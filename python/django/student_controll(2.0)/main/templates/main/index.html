@@ -6,7 +6,7 @@
         body{
             background-color: #444444 ;
         }
-        .col{
+        .col,.col-4, .col-5{
             background-color: darkgrey;
         }
         .header{
@@ -27,6 +27,13 @@
         .username, a{
             text-decoration: underline;
         }
+        .inform{
+            font-size:60px;
+            color:ghostwhite;
+        }
+        .btn{
+            font-size:30px;
+        }
     </style>
 </head>
 <body>
@@ -45,9 +52,10 @@
 
         </div>
     </div>
+{% block content %}
     <div class="row m-1">
         <div class="col d-flex justify-content-center align-items-center">
-        {% block content %}
+
             {% if user.username == 'admin' %}
                 <script>
                 window.onload = function(){

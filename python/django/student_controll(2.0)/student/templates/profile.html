@@ -1,13 +1,29 @@
 {% extends 'main/index.html' %}
 
 {% block content %}
-<div class="row">
-<div class="col-3">
+    <div class="container">
+<div class="row d-flex justify-content-start" style="margin-top: 10px;">
+
+<div class="col-4" style="">
 <img src="http://woissmobili.ru/wp-content/themes/panama/assets/img/empty/600x600.png" width="200px" height="200px">
 </div>
-<div class="col-9">
-    {{ user.first_name  }}
+<div class="col inform">
+    <div class="row">
+        <div class="col">{{ user.first_name }}</div>
+        <div class="col">{{ user.last_name }}</div>
+    </div>
 </div>
+</div>
+<div class="row">
+        <div class="col-4 inform" style="font-size: 30px">{% for data in student %}
+                age: {{ data.age }} y/o<br>
+                group: {{ data.group }}<br>
+                sex: {{ data.sex }}
+            {% endfor %}
+        </div>
+<div class="col"><button class="btn btn-danger">Progress</button></div>
+<div class="col"><button class="btn btn-info">Update data</button></div>
 </div>
 
+    </div>
 {% endblock %}

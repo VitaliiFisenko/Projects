@@ -1,0 +1,52 @@
+{% extends 'main/index.html' %}
+{% block content %}
+{% if user.is_superuser %}
+
+    <form>
+   {% csrf_token %}
+    <select id="departament" name="departament" onchange="departament_change()">
+    <option value="-------" id="empty_value" selected>-------</option>
+    {% for departament in departament %}
+        {% if departament == choice_departament %}
+            <script>
+            function sd() {
+                empty_value.selected = 0;
+            }
+            </script>
+        <option value="{{ departament }}" selected>{{ departament }}</option>
+        {% else %}
+            <option value="{{ departament }}">{{ departament }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+    {% if teachers == None %}
+    <select id="Teacher" name="Teacher" disabled>
+        <option value="" selected>-------</option>
+
+    </select>
+        {% else %}
+        <select id="Teacher" name="Teacher" disabled>
+        <option value="" selected>-------</option>
+        {% for teacher in teachers %}
+            <option value="{{ teacher }}">{{ teacher }}</option>
+        {% endfor %}
+    </select>
+        {% endif %}
+    </form>
+    {% else %}
+    permission error
+    {% endif %}
+    <script>
+    function departament_change(){
+        let departament = document.getElementById('departament');
+        let teacher_option = document.getElementById('Teacher');
+        if(departament.value != '-------'){
+            teacher_option.disabled = 0;
+            window.location.href = ''+departament.value;
+        }else{
+            teacher_option.disabled = 1;
+        }
+
+    }
+    </script>
+{% endblock %}

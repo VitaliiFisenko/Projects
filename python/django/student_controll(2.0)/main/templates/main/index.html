@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #444444 ;
+        }
+        .col{
+            background-color: darkgrey;
+        }
+        .header{
+            background-color: slategray;
+            font-size: 30px;
+            color:white;
+            font-family: Chandas;
+            letter-spacing: 0.5px;
+            border-radius: 5px;
+        }
+        .body_header{
+            font-size: 30px;
+        }
+        .username{
+            color: orange;
+
+        }
+        .username, a{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col d-flex justify-content-left">
+            <div class="header m-2 p-2">
+                Student Control System<br>
+                 {% if user.is_authenticated %}
+                <div class="username">
+                {{ user.username }}
+                <a href="{% url 'logout' %}">logout</a>
+                </div>
+            {% endif %}
+            </div>
+
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col d-flex justify-content-center align-items-center">
+        {% block content %}
+            {% if user.username == 'admin' %}
+                <script>
+                window.onload = function(){
+                    window.location.href = {% url 'admin_panel' %}
+                }
+                </script>
+                {% elif user.is_authenticated %}
+                <script>
+                window.location.href = {% url 'student_profile' %}
+                </script>
+            {% else %}
+                <div class="row">
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <div style="font-size: 50px;">Для работы с системой необходимо <a href="{% url 'login' %}">войти</a>.</div><br>
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

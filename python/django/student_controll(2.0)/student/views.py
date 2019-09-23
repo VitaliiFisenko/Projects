@@ -3,13 +3,16 @@ from django.shortcuts import render
 from django.views import generic
 
 import main
+from main.models import Student
 
 
 class StudentProfile(generic.ListView):
     template_name = 'profile.html'
+    model = Student
+    context_object_name = 'students'
 
-    def dispatch(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'student_qs': main.models.Student.objects.filter(user=request.user),
-                'user_qs': User.objects.filter(username=request.user)})
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
 
 # Create your views here.

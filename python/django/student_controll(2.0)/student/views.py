@@ -1,8 +1,6 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render
+
 from django.views import generic
 
-import main
 from main.models import Student
 
 

@@ -27,6 +27,19 @@
         .username, a{
             text-decoration: underline;
         }
+        .information{
+            font-size:40px;
+            background-color: lightslategray;
+            font-family: Chandas;
+            color:whitesmoke;
+        }
+        .footer_information{
+        font-size:30px;
+            background-color: lightslategray;
+            font-family: Chandas;
+            color:whitesmoke;
+
+        }
     </style>
 </head>
 <body>
@@ -45,9 +58,10 @@
 
         </div>
     </div>
+{% block content %}
     <div class="row m-1">
         <div class="col d-flex justify-content-center align-items-center">
-        {% block content %}
+
             {% if user.username == 'admin' %}
                 <script>
                 window.onload = function(){

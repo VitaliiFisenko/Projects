@@ -1,0 +1,14 @@
+{% extends 'main/index.html' %}
+{% block content %}
+    <div align="center">
+    <form  method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.username.label_tag }}<br>
+    {{ form.username }}<br>
+    {{ form.password.label_tag }}<br>
+    {{ form.password }}<br>
+    <button type="submit">SUBMIT</button>
+    </form>
+    <a href="{% url 'password_reset' %}">lost password?</a>
+    </div>
+{% endblock %}

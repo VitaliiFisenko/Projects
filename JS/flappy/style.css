@@ -1,0 +1,11 @@
+canvas{
+    border: 1px solid black;
+
+}
+#canvas{
+    z-index: 0;
+}
+p{
+	margin-top: -2px;
+	color:gray;
+}
